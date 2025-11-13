@@ -15,9 +15,17 @@ const findUserById = async (id) => {
     });
 };
 
-const createUser = async (data) => await User.create(data);
+const getPaginatedUsers = async (limit, offset) => {
+    return await User.findAndCountAll({
+        include:[{model: Position, as: 'position'}],
+        limit,
+        offset,
+    });
+};
+
+const createUser = async (userData) => await User.create(userData);
 const getAllUsers = async () => await User.findAll();
-const updateUser = async (id,data) => await User.update(data, {where: { id }});
+const updateUser = async (id,userData) => await User.update(userData, {where: { id }});
 const deleteUser = async (id) => await User.destroy({where: { id }});
 
 module.exports = {
@@ -25,6 +33,7 @@ findUserByEmail,
 findUserById,
 createUser,
 getAllUsers,
+getPaginatedUsers,
 updateUser,
 deleteUser,
 }
