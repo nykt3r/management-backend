@@ -1,2 +1,13 @@
-/node_modules/
 .env
+/node_modules
+
+# Dependencias y builds
+/dist
+/.vscode
+/.idea
+
+# Variables de entorno
+.env
+.env.local
+.env.development
+.env.test
